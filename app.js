@@ -1,13 +1,29 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require("mongoose");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+//DataBase Connection//
+mongoose.connect(process.env.DB_API, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+})
+  .then(() => {
+    console.log("Connected to DataBase");
+  })
+  .catch((error) => {
+    console.log(error);
+    console.log("Connection Failed!!!");
+  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
