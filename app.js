@@ -12,21 +12,31 @@ var usersRouter = require('./routes/users');
 var recipientRouter = require('./routes/recipient');
 var messageRouter = require('./routes/message');
 
+var algo = require('./alogrithm/logic');
+
 var app = express();
 
 //DataBase Connection//
-mongoose.connect(process.env.DB_API, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-})
-  .then(() => {
-    console.log("Connected to DataBase");
-  })
-  .catch((error) => {
-    console.log(error);
-    console.log("Connection Failed!!!");
-  });
+
+  (async () => {
+    try {
+      await mongoose.connect(process.env.DB_API, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true
+      })
+        .then(() => {
+          console.log("Connected to DataBase");
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log("Connection Failed!!!");
+        });
+      await algo.logic();
+    } catch (err) {
+      console.log('error: ' + err)
+    }
+  })()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
