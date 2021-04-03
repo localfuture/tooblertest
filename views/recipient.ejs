@@ -69,7 +69,7 @@
     function updateInstallmentIndex() {
         $.ajax({
             type: 'GET',
-            url: '/recipient/message',
+            url: 'https://tooblertest.herokuapp.com/recipient/message',
             contentType: "application/json",
             success: function (data) {
                 if (data) {
@@ -95,7 +95,7 @@
     function updateRecipientDetails() {
         $.ajax({
             type: 'GET',
-            url: '/recipient/all',
+            url: 'https://tooblertest.herokuapp.com/recipient/all',
             contentType: "application/json",
             success: function (data) {
                 if (data) {
