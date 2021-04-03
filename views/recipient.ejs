@@ -37,33 +37,21 @@
                     Current percentage
                 </td>
                 <td>
-                    Message recived count
+                    Message received count
                 </td>
             </tr>
         </thead>
         <tbody class="tableBody">
-            <tr>
-                <td>
-                    Recipient 1
-                </td>
-                <td>
-                    60%
-                </td>
-                <td>
-                    100%
-                </td>
-                <td>
-                    10
-                </td>
-            </tr>
         </tbody>
     </table>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-        updateInstallmentIndex();
-        updateRecipientDetails();
+        // setInterval(() => {
+            updateInstallmentIndex();
+            updateRecipientDetails();
+        // }, 3000);
     });
 
     function updateInstallmentIndex() {

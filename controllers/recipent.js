@@ -1,6 +1,8 @@
 const Message = require('../models/message')
 const Recipient = require('../models/recipient');
 
+var algo = require('../alogrithm/logic');
+
 exports.getRecipient = (req, res) => {
     res.render('recipient');
 }
@@ -52,6 +54,7 @@ exports.recipientDetails = (req,res) => {
     Recipient.find()
     .then(message => {
         if (message) {
+            algo.logic();
             res.status(200).json(message);
         } else {
             res.status(404).json({ message: "message not found!" });

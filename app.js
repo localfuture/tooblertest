@@ -32,7 +32,7 @@ var app = express();
           console.log(error);
           console.log("Connection Failed!!!");
         });
-      await algo.logic();
+      //await algo.logic();
     } catch (err) {
       console.log('error: ' + err)
     }
