@@ -49,7 +49,7 @@ function calculateNewMessageCount(recipients) {
     var messagesCount = totalMessage - sendMessage;
     recipients.forEach(element => {
         var newCount = Math.floor((messagesCount * (element.actualPercentage / 100))) + element.totalMessageCount;
-        var balanceCount = newCount - element.balanceMessageCount;
+        var balanceCount = newCount - element.receviedMessageCount;
         var currentPercentage = element.currentPercentage;
         var receviedMessageCount = element.receviedMessageCount;
         if (balanceCount != 0) {
