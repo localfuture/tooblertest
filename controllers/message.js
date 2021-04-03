@@ -29,3 +29,21 @@ exports.saveMessage = (req,res) => {
             });
         });
 }
+
+exports.updateMessageSettings = (req,res) => {
+    Message.findOne()
+    .then(data => {
+        const mess = new Message({
+            _id: data._id,
+            messageText: data.messageText,
+            totalMessageCount: req.body.totalMessageCount,
+            sendMessageCount: req.body.sendMessageCount,
+            messageSendCount: data.message,
+            recipientCount: data.recipientCount
+        });
+
+        Message.updateOne({_id: data._id},mess).then(d => {
+            res.send(200).json({'message': 'success'});
+        })
+    })
+}

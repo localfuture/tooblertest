@@ -39,6 +39,9 @@
                     <td>
                         Message received count
                     </td>
+                    <td>
+
+                    </td>
                 </tr>
             </thead>
             <tbody class="tableBody">
@@ -69,7 +72,7 @@
     function updateInstallmentIndex() {
         $.ajax({
             type: 'GET',
-            url: 'https://tooblertest.herokuapp.com/recipient/message',
+            url: '/recipient/message',
             contentType: "application/json",
             success: function (data) {
                 if (data) {
@@ -95,7 +98,7 @@
     function updateRecipientDetails() {
         $.ajax({
             type: 'GET',
-            url: 'https://tooblertest.herokuapp.com/recipient/all',
+            url: '/recipient/all',
             contentType: "application/json",
             success: function (data) {
                 if (data) {
@@ -115,6 +118,9 @@
                                         </td>
                                         <td>
                                             <h4> ${element.receviedMessageCount} </h4>
+                                        </td>
+                                        <td>
+                                            <a href="/recipient/single/${element._id}">Edit</a>
                                         </td>
                                     </tr>`;
                     });

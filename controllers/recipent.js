@@ -66,3 +66,27 @@ exports.recipientDetails = (req,res) => {
         });
     });
 }
+
+exports.singleUpdate = (req,res) => {
+   Recipient.findById(req.params.id).then(data => {
+       res.render('recipientform', {data: data});
+   })
+}
+
+exports.update = (req,res) => {
+    const recipient = new Recipient({
+        _id: req.body.id,
+        recipientName: req.body.recipientName,
+        actualPercentage: req.body.actualPercentage,
+        currentPercentage: req.body.actualPercentage,
+        totalMessageCount: 0,
+        receviedMessageCount: 0,
+        balanceMessageCount: 0
+    });
+
+    Recipient.updateOne({_id: req.body.id}, recipient)
+    .then(data => {
+        console.log(data);
+        res.redirect('/recipient');
+    })
+}
