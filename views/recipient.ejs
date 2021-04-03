@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Recipient</h1>
-    <h1>Total Message:</h1>
-    <hr>
-    <h1>Message already sent:</h1>
+    <div class="messageDetails">
+        <h1 id="totalMessage">Total Message: 0</h1>
+        <hr>
+        <h1 id="messageSent">Message already sent: 0</h1>
+        <hr>
+    </div>
 
     <table>
         <thead>
@@ -47,4 +52,31 @@
         </tbody>
     </table>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        updateInstallmentIndex();
+    });
+
+    function updateInstallmentIndex() {
+        $.ajax({
+            type: 'GET',
+            url: '/recipient/message',
+            contentType: "application/json",
+            success: function (data) {
+               if(data) {
+                    $('.messageDetails').empty();
+                    var message = '';
+                    message += ` <h1 id="totalMessage">Total Message: ${data.totalMessageCount}</h1><hr>`;
+                    message += ` <h1 id="messageSent">Message already sent: ${data.sendMessageCount}</h1><hr>`;
+                    $('.messageDetails').append(message);
+               }
+            },
+            error: function (MLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+</script>
+
 </html>

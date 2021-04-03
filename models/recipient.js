@@ -28,4 +28,4 @@ const recipientSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Recipient", recipientSchema);
+module.exports = mongoose.model("Recipients", recipientSchema);
